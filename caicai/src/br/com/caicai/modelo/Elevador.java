@@ -9,6 +9,8 @@ public class Elevador {
 	private int andarAtual;
 	private int qtdePessoas;
 	
+
+	
 	public void entrar(int pQtde) {
 		int resultado = pQtde + qtdePessoas;
 		if (resultado<=capacidadePessoas) {
