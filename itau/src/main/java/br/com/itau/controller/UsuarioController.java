@@ -21,6 +21,14 @@ public class UsuarioController {
 	@Autowired // delega para o Spring o gerenciamento deste atributo
 	private UsuarioDAO dao;
 	
+	@PostMapping("/login2")
+	public ResponseEntity<Usuario> logar2(@RequestBody Usuario objeto){
+		Usuario usuario = dao.findByEmailAndSenha(objeto.getEmail(), objeto.getSenha());
+		if (usuario==null) {
+			return ResponseEntity.status(404).build();
+		}
+		return ResponseEntity.ok(usuario);
+	}
 	
 	@PostMapping("/login")
 	public ResponseEntity<Usuario> logar(@RequestBody Usuario objeto){

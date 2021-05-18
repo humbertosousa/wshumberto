@@ -50,7 +50,6 @@ INDEX VERSION 1.131+C:\Users\Bruno Melniski\Desktop\turma18c\wshumberto\.metadat
 1870082367.index
 1237651286.index
 1323375504.index
-1922986631.index
 3925038414.index
 3496137005.index
 1443176886.index
