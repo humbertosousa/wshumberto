@@ -1,11 +1,17 @@
 package br.com.itau.modelo;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="TB_ARTISTA")
@@ -22,6 +28,16 @@ public class Artista {
 	@Column(name="estilo", length=20)
 	private String estilo;
 	
+	@OneToMany(mappedBy="artista", cascade=CascadeType.ALL)
+	@JsonIgnoreProperties("artista")
+	private List<Musica> musicas;
+	
+	public List<Musica> getMusicas() {
+		return musicas;
+	}
+	public void setMusicas(List<Musica> musicas) {
+		this.musicas = musicas;
+	}
 	
 	public int getId() {
 		return id;
@@ -47,21 +63,25 @@ public class Artista {
 	public void setEstilo(String estilo) {
 		this.estilo = estilo;
 	}
-	public Artista(int id, String nomeArtistico, String nacionalidade, String estilo) {
+
+	public Artista() {
+		super();
+	}
+	public Artista(int id, String nomeArtistico, String nacionalidade, String estilo, List<Musica> musicas) {
 		super();
 		this.id = id;
 		this.nomeArtistico = nomeArtistico;
 		this.nacionalidade = nacionalidade;
 		this.estilo = estilo;
-	}
-	public Artista() {
-		super();
+		this.musicas = musicas;
 	}
 	@Override
 	public String toString() {
 		return "Artista [id=" + id + ", nomeArtistico=" + nomeArtistico + ", nacionalidade=" + nacionalidade
-				+ ", estilo=" + estilo + "]";
+				+ ", estilo=" + estilo + ", musicas=" + musicas + "]";
 	}
+
+	
 	
 	
 }
